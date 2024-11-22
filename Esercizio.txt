@@ -1,0 +1,25 @@
+﻿1) I have created a workspace named rosuninacorse using the command mkdir and then I used the command cd to move into that directory. Honestly at first I have just copied and pasted the file that you sent us on whatsapp into the directory, even though I discovered later that I could have done it also with the command mv.
+2) I tried using the command ros2 topic list, but it gave me only 3 topics, which were /parameter_events
+/rosout
+/topic
+So I opened the file metadata.yaml and by reading it I saw the 5 different topics, their names, types etc…
+3/4) I tried using the command ros2 bag info to find out about topics frequency, but the terminal always said that it does not find the path that I wrote, even though I tried writing it in many different ways, so also this time, by looking at the metadata.yaml file I saw the message count for each topic and the nanoseconds. So I found the frequency in Hz by converting the nanoseconds in seconds and then by dividing the number of message count of each topic by the seconds. The frequencies are:
+29.3 Hz for the topic image
+1.78Hz for the topic system
+I assumed that for <topic image> and <topic system> you were referring to the topic giving back images and the topic giving back info on the system, since I have not found any topic called image or system
+5) since I have seen what a sysmon msg returns by reading the file sysmon.msg, we can expect from the topic system_info to return informations about: cpu usage, cpu temp, ram usage, gpu usage, gpu temp, gpu ram usage
+6)In the same workspace called rosuninacorse I have created a new package called data_publisher by using ros2 pkg create. Then I have created a node called publ using nano publ.py. Since I do not know how to write the code in python, I have used copilot to write the code for publ.py and for the setup.py file. Still I have tried to breakdown the codes. Then I built the package the 2 packages <data_publisher> and <sysmonitor_interfaces> using colcon build. Then I sourced the setup files by using source /setup.bush and then I used ros2 run data_publisher data_publisher_node to run the node. If I have understood something from the setup.py file, I have used data_publisher_node in the ros2 run command and not publ (which is the name of the python file) because in the setup.py I have set the entry points and so data_publisher_node is publ. Also I saw that the topic is created in the python file directly if im not wrong. The running gave me this
+[INFO] [1732303052.498309030] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303053.491866783] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303054.491992441] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303055.491946344] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303056.492033780] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303057.491880005] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303058.491933104] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303059.492822070] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303060.492093501] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303061.492001782] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303062.493980295] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303063.492045017] [data_publisher_node]: Published: 42.0 to /test
+[INFO] [1732303064.492961699] [data_publisher_node]: Published: 42.0 to /test
+42 is a random value that I have set in the publ.py file just for example.
